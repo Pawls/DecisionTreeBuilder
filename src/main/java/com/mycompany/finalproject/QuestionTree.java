@@ -132,9 +132,7 @@ public class QuestionTree {
             while (i_stream.hasNextLine()){
                 prefix = i_stream.next();
                 readLine = i_stream.nextLine().trim();
-                if(prefix.equals("WIN"))
-                    current.win = true;
-                else if (current.win == true && current.noNode == null){
+                if (current.win == true && current.noNode == null && !(prefix.equals("WIN"))){
                     addNo(readLine);
                     if (prefix.equals("L:")){
                         current.win = true;
@@ -142,21 +140,23 @@ public class QuestionTree {
                     }
                 }
                 else{
-                    if(prefix.equals("Y:"))
-                        addYes(readLine);
-                    else if(prefix.equals("N:")) 
-                        addNo(readLine);
-                    else if(prefix.equals("L:")){
-                        if(current.yesNode == null){
-                            temp = addYes(readLine);
-                            temp.win = true;
-                            current = current.parent;
+                    switch (prefix) {
+                        case "WIN" -> current.win = true;
+                        case "Y:" -> addYes(readLine);
+                        case "N:" -> addNo(readLine);
+                        case "L:" -> {
+                            if(current.yesNode == null){
+                                temp = addYes(readLine);
+                                temp.win = true;
+                                current = current.parent;
+                            }
+                            else if (current.noNode == null){
+                                temp = addNo(readLine);
+                                temp.win = true;
+                                current = findIncompleteAscendent(current);
+                            }
                         }
-                        else if (current.noNode == null){
-                            temp = addNo(readLine);
-                            temp.win = true;
-                            current = findIncompleteAscendent(current);
-                        }
+                        default -> {}
                     }
                 }
             }
