@@ -7,6 +7,7 @@ package com.mycompany.finalproject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -18,19 +19,7 @@ import java.util.Stack;
 public class QuestionTree {
     private static Node root;
     private static Node current;
-    
-    /**
-     * Node class which comprises the Question Tree.
-     */
-    class Node{
-        String question;
-        Node parent;
-        Node yesNode;
-        Node noNode;
-        boolean win; // True if this is a terminal "WIN" node       
-        Node(String question){this.question = question;}
-    }
-    
+        
     /**
      * Inserts the root node.
      * @param question The question that will be asked at this node.
@@ -107,7 +96,7 @@ public class QuestionTree {
         newNode.yesNode.parent = newNode;
     }
     
-    public static Node findIncompleteAscendent(Node node){
+    private Node findIncompleteAscendent(Node node){
         Node node_ptr = node.parent;
         while (!(node_ptr.noNode == null || (node_ptr.yesNode == null && node_ptr.win == false))){
             if (node_ptr.parent != null)
@@ -165,11 +154,11 @@ public class QuestionTree {
         }
     }
 
-    public void traverse(){
-        traverseHelper(root);
+    public void printTree(){
+        printTreeHelper(root);
     }
     
-    private void traverseHelper(Node node){
+    private void printTreeHelper(Node node){
         System.out.println("");
         if (node.parent != null)
             System.out.println("Parent: " + node.parent.question);
@@ -181,21 +170,20 @@ public class QuestionTree {
             System.out.println("    No: "+node.noNode.question);   
         
         if(node.yesNode != null){
-            traverseHelper(node.yesNode);
+            printTreeHelper(node.yesNode);
         }
         if(node.noNode != null){
-            traverseHelper(node.noNode);
+            printTreeHelper(node.noNode);
         }
     }
     
     public void save(File f_out){
         try{
-            //File f_out = new File("saved_questions.txt");
             f_out.createNewFile();
             PrintWriter o_stream = new PrintWriter(f_out);
             saveHelper(root, o_stream, "");            
             o_stream.close();
-        } catch (Exception e){
+        } catch (IOException e){
             System.out.println("Failed to save file");
         }        
     }
