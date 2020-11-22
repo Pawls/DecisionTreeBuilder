@@ -136,28 +136,27 @@ public class QuestionTree {
                     current.win = true;
                 else if (current.win == true && current.noNode == null){
                     addNo(readLine);
+                    if (prefix.equals("L:")){
+                        current.win = true;
+                        current = findIncompleteAscendent(current);
+                    }
                 }
                 else{
-                    switch (prefix) {
-                        case "Y:":
-                            addYes(readLine);
-                            break;
-                        case "N:":
-                            addNo(readLine);
-                            break;
-                        case "L:":
-                            if(current.yesNode == null){
-                                temp = addYes(readLine);
-                                temp.win = true;
-                                current = current.parent;
-                            }
-                            else if (current.noNode == null){
-                                temp = addNo(readLine);
-                                temp.win = true;
-                                current = findIncompleteAscendent(current);
-                            }   break;
-                        default:
-                            break;
+                    if(prefix.equals("Y:"))
+                        addYes(readLine);
+                    else if(prefix.equals("N:")) 
+                        addNo(readLine);
+                    else if(prefix.equals("L:")){
+                        if(current.yesNode == null){
+                            temp = addYes(readLine);
+                            temp.win = true;
+                            current = current.parent;
+                        }
+                        else if (current.noNode == null){
+                            temp = addNo(readLine);
+                            temp.win = true;
+                            current = findIncompleteAscendent(current);
+                        }
                     }
                 }
             }
