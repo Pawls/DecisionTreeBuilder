@@ -96,7 +96,12 @@ public class QuestionTree {
         newNode.yesNode.parent = newNode;
     }
     
-    private Node findIncompleteAscendent(Node node){
+    /**
+     * Finds the nearest ascendant node nearest to node that is not yet complete.
+     * @param node
+     * @return a reference to the discovered node
+     */
+    private Node findIncompleteAscendant(Node node){
         Node node_ptr = node.parent;
         while (!(node_ptr.noNode == null || (node_ptr.yesNode == null && node_ptr.win == false))){
             if (node_ptr.parent != null)
@@ -121,11 +126,17 @@ public class QuestionTree {
             while (i_stream.hasNextLine()){
                 prefix = i_stream.next();
                 readLine = i_stream.nextLine().trim();
+                
+                // If the previous node was designated as a terminal "WIN" node,
+                // add the next node to the "No" branch. 
                 if (current.win == true && current.noNode == null && !(prefix.equals("WIN"))){
                     addNo(readLine);
+                    
+                    // If the prefix for this node is "L:", then this branch
+                    // is complete. Find the next incomplete node.
                     if (prefix.equals("L:")){
                         current.win = true;
-                        current = findIncompleteAscendent(current);
+                        current = findIncompleteAscendant(current);
                     }
                 }
                 else{
@@ -134,6 +145,9 @@ public class QuestionTree {
                         case "Y:" -> addYes(readLine);
                         case "N:" -> addNo(readLine);
                         case "L:" -> {
+                            // This block will be reached if the previous node was NOT a
+                            // terminal "WIN" node. Decide whether to add this node to
+                            // "Yes" branch or the "No" branch.
                             if(current.yesNode == null){
                                 temp = addYes(readLine);
                                 temp.win = true;
@@ -142,7 +156,7 @@ public class QuestionTree {
                             else if (current.noNode == null){
                                 temp = addNo(readLine);
                                 temp.win = true;
-                                current = findIncompleteAscendent(current);
+                                current = findIncompleteAscendant(current);
                             }
                         }
                         default -> {}
@@ -150,14 +164,23 @@ public class QuestionTree {
                 }
             }
         } catch (FileNotFoundException e){
-            System.out.println("Failed to load file");
+            System.out.println("Failed to load file.");
         }
     }
-
+    
+    /**
+     * Wrapper for the printTreeHelper method.
+     */
     public void printTree(){
         printTreeHelper(root);
     }
     
+    /**
+     * Helper method for printTree. This method recursively visits
+     * each node in the tree and prints the values of the member variables
+     * to the console.
+     * @param node 
+     */
     private void printTreeHelper(Node node){
         System.out.println("");
         if (node.parent != null)
