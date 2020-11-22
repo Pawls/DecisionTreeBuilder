@@ -18,7 +18,6 @@ import java.util.Stack;
 public class QuestionTree {
     private static Node root;
     private static Node current;
-    private static Stack<Node> splitStack;
     
     /**
      * Node class which comprises the Question Tree.
@@ -155,13 +154,7 @@ public class QuestionTree {
                             else if (current.noNode == null){
                                 temp = addNo(readLine);
                                 temp.win = true;
-                                current = current.parent;
-                                while (!(current.noNode == null || (current.yesNode == null && current.win == false))){
-                                    if (current.parent != null)
-                                        current = current.parent;
-                                    else
-                                        break;
-                                }
+                                current = findIncompleteAscendent(current);
                             }   break;
                         default:
                             break;
@@ -205,9 +198,7 @@ public class QuestionTree {
             o_stream.close();
         } catch (Exception e){
             System.out.println("Failed to save file");
-        }
-
-        
+        }        
     }
     
     private void saveHelper(Node node, PrintWriter o_stream, String prefix){
@@ -219,22 +210,21 @@ public class QuestionTree {
         if(node.yesNode != null)
             saveHelper(node.yesNode, o_stream, "Y: ");
         if(node.noNode != null)
-            saveHelper(node.noNode, o_stream, "N: ");       
-        
+            saveHelper(node.noNode, o_stream, "N: ");               
     }
     
     public void assemble(){
-        splitStack = new Stack<>();
+        Stack<Node> splitStack = new Stack<>();
         String s = JOptionPane.showInputDialog("Please type a question");
         if (!(s.equals(""))){
             // We use splitStack for backtracking
             splitStack.push(insertRoot(s));
             int option = JOptionPane.showConfirmDialog(null, s, "", JOptionPane.YES_NO_OPTION);
-            assembleHelper(option);
+            assembleHelper(option, splitStack);
         }
     }
     
-    private void assembleHelper(int option){
+    private void assembleHelper(int option, Stack<Node> splitStack){
         String s = JOptionPane.showInputDialog("Please type a question (leave blank if the previous question was the answer)");
         if (!(s.equals(""))){
             if (option == 0)
@@ -243,7 +233,7 @@ public class QuestionTree {
                 splitStack.push(addNo(s));
             // For next_option, 0 is yes and 1 is no.
             int next_option = JOptionPane.showConfirmDialog(null, s, "", JOptionPane.YES_NO_OPTION);
-            assembleHelper(next_option);
+            assembleHelper(next_option, splitStack);
         }
         else if (option == 0){
             JOptionPane.showMessageDialog(null, "Good game!");
@@ -260,12 +250,12 @@ public class QuestionTree {
             if (prevNode.yesNode == null && prevNode.win != true){
                 current = prevNode;
                 JOptionPane.showMessageDialog(null, "Question: '"+current.question+"'\n needs a response for 'Yes'");
-                assembleHelper(0);
+                assembleHelper(0, splitStack);
             }
             else if (prevNode.noNode == null){
                 current = prevNode;
                 JOptionPane.showMessageDialog(null, "Question: '"+current.question+"'\n needs a response for 'No'");
-                assembleHelper(1);
+                assembleHelper(1, splitStack);
             }
         }            
     }
