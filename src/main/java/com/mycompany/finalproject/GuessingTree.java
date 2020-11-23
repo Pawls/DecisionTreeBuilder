@@ -13,8 +13,8 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.util.Stack;
 /**
- *
- * @author cluel
+ * A binary tree implementation of a 20 Questions guessing game
+ * @author Paul Davis
  */
 public class GuessingTree {
     private static Node root;
