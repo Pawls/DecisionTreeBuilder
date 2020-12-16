@@ -1,0 +1,117 @@
+Is it a vertebrate (Does it have a back-bone)?
+Y: Is it warm-blooded?
+Y: Is it a mammal?
+Y: Is it at least semi-aquatic (lives in water some or all the time)?
+Y: Do the adults weight more than 500 lbs?
+Y: Does it have legs?
+L: Is it a hippopotamus?
+L: Is it a whale?
+N: Is it furry?
+Y: Does it have legs?
+Y: Does it have a duck-like bill?
+L: Is it a platypus?
+L: Is it a beaver?
+L: Is it a sea lion?
+L: Is it a dolphin?
+N: Is it known as a predator (when in the wild)?
+Y: Is it a feline?
+Y: Are the adults heavier than 100 lbs?
+Y: Is it native to Africa?
+L: Is it a lion?
+N: Is it native to America?
+L: Is it a mountain lion?
+L: Is it a tiger?
+L: Is it a housecat?
+N: Are the adults heavier than 200 lbs?
+L: Is it a bear?
+N: Is it a canine (like a dog)?
+Y: Is it domesticated?
+L: Is it a dog?
+N: Is it a native to Australia?
+L: Is it a dingo?
+N: Is it known to hunt in packs?
+L: Is it a wolf?
+L: Is it a coyote?
+L: Is it a hyena?
+N: Is it in the primate family?
+Y: Is it a great ape?
+Y: Is it known for beating its chest?
+L: Is it a gorilla?
+N: Is it known to have orange fur?
+L: Is it an orangutan?
+N: Is it mostly hairless?
+L: Is it a human?
+L: Is it a chimpanzee?
+L: Is it a monkey?
+N: Is it a marsupial?
+L: Is it a kangaroo?
+N: Do they walk on 4 legs?
+Y: Are the adults bigger than 50 lbs?
+Y: Do they sometimes have antlers?
+L: Is it a deer?
+N: Do they sometimes have pointed horns?
+Y: Are the adults taller than 4 feet?
+Y: Are they known for their milk?
+L: Is it a cow?
+L: Is it a bison?
+N: Are they known for their wool?
+L: Is it a sheep?
+L: Is it a goat?
+N: Do they sometimes have tusks?
+L: Is it an elephant?
+N: Is it known for having a humped back?
+L: Is it a camel?
+N: Is it known to oink?
+L: Is it a pig?
+N: Is it known for its long neck?
+L: Is it a giraffe?
+N: Was it a companion to an ogre in a movie?
+L: Is it a donkey?
+L: Is it a horse?
+N: Does it have stripes?
+L: Is it a raccoon?
+N: Does it have a bushy tail?
+L: Is it a squirrel?
+N: Is it sometimes kept as a pet?
+L: Is it a rat?
+N: Is it a marsupial?
+L: Is it a koala?
+L: Is it a mouse?
+L: Is it imaginary?
+N: Is it known to cluck?
+L: Is it a chicken?
+N: Is it known to live in the extreme cold?
+L: Is it a penguin?
+N: Is it a good swimmer?
+Y: Does it have a long neck?
+L: Is it a swan?
+L: Is it a duck?
+N: Does it live in a tropical climate?
+L: Is it a parrot?
+N: Is it good at flying?
+L: Is it an owl?
+L: Is it a turkey?
+N: Does it have scales?
+Y: Does it breathe underwater?
+L: Is it a fish?
+N: Does it have a shell?
+L: Is it a turtle?
+N: Does it have legs?
+Y: Is it bigger than a house cat?
+L: Is it an alligator/crocodile?
+L: Is it a lizard?
+L: Is it a snake?
+N: Does it have a dorsal fin?
+L: Is it a shark?
+L: Is it a frog?
+N: Does it have jointed legs?
+Y: Is it a crustacean?
+L: Is it a lobster?
+L: Is it an ant?
+N: Does it have a shell?
+L: Is it a snail?
+N: Does it have suction cups?
+L: Is it an octopus?
+N: Can it climb up a wall?
+L: Is it a slug?
+L: Is it a worm?

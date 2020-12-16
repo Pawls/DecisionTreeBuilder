@@ -103,13 +103,13 @@ public class GuessingTree {
     }
 
     /**
-     * Finds the nearest ascendant node nearest to node that is not yet
+     * Finds the nearest ancestor node nearest to node that is not yet
      * complete.
      *
      * @param node
      * @return a reference to the discovered node
      */
-    private Node findIncompleteAscendant(Node node) {
+    private Node findIncompleteAncestor(Node node) {
         Node node_ptr = node.parent;
         while (!(node_ptr.noNode == null || (node_ptr.yesNode == null && node_ptr.win == false))) {
             if (node_ptr.parent != null) {
@@ -146,7 +146,7 @@ public class GuessingTree {
                     // is complete. Find the next incomplete node.
                     if (prefix.equals("L:")) {
                         current.win = true;
-                        current = findIncompleteAscendant(current);
+                        current = findIncompleteAncestor(current);
                     }
                 } else {
                     switch (prefix) {
@@ -167,7 +167,7 @@ public class GuessingTree {
                             } else if (current.noNode == null) {
                                 temp = addNo(readLine);
                                 temp.win = true;
-                                current = findIncompleteAscendant(current);
+                                current = findIncompleteAncestor(current);
                             }
                         }
                         default -> {
